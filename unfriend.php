@@ -22,20 +22,20 @@ function unfriend($id, $token){
     $result = curl_exec($ch);
     curl_close($ch);
 	if($result == true){
-		$unf = Console::green('[UNFRIENDED]');
+		$unf = Console::green('[YOUR FIREND HAS UNFRIENDED]');
 	} else {
-		$unf = Console::red('[FAILED TO UNFRIEND]');
+		$unf = Console::red('[FAILED TO UNFRIEND YOUR FRIEND]');
 	}
 	return $unf;
 }
 
-echo Console::blue("     Facebook Auto Unfriend\n");
+echo Console::blue("     Facebook Auto Unfriends\n");
 echo Console::blue("        Inactive Users\n\n");
 
 //INPUT
 echo "Facebook token : ";
 $fbtoken = trim(fgets(STDIN));
-echo "Year : ";
+echo "Year of Facebook : ";
 $year = trim(fgets(STDIN));
 echo "\n";
 
@@ -49,10 +49,10 @@ foreach($FL as $list){
 	$date = last_active($id, $fbtoken);
 	echo Console::cyan("(" .$count. "/" .$totalFL. ")");
 	if($date < $year){
-		echo Console::red('[INACTIVE]').' '.$name.' ~ '.$date.' '.unfriend($id, $fbtoken);
+		echo Console::red('[INACTIVE USERS]').' '.$name.' ~ '.$date.' '.unfriend($id, $fbtoken);
 		echo "\r\n";
 	}else{
-		echo Console::green('[ACTIVE]').' '.$name.' ~ '.$date;
+		echo Console::green('[ACTIVE USERS]').' '.$name.' ~ '.$date;
 		echo "\r\n";
 	}
 }
